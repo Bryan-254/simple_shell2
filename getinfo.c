@@ -28,7 +28,7 @@ void set_info(info_t *info, char **av)
 	if (info->arg)
 	{
 		info->argv = strtow(info->arg, " \t");
-		if (!info->argv)
+		if (info->argv == NULL)
 		{
 			info->argv = malloc(sizeof(char *) * 2);
 
