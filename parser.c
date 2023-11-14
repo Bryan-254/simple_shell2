@@ -50,7 +50,7 @@ char *dup_chars(char *pathstr, int start, int stop)
 }
 
 /**
- * find__path - This function finds this cmd in the PATH string
+ * find_path - This function finds this cmd in the PATH string
  * @info: This parameter is the info struct
  * @pathstr: This parameter is the PATH string
  * @cmd: This parameter is the cmd to find

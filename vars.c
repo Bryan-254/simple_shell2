@@ -148,7 +148,7 @@ int replace_vars(info_t *info)
 }
 
 /**
- * replace_the_string - This function replaces string
+ * replace_string - This function replaces string
  * @old: This parameter is the address of old string
  * @new: This parameter is the new string
  * Return: 1 if replaced, else 0
