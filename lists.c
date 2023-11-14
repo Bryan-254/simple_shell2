@@ -5,7 +5,6 @@
  * @head: This parameter is address of pointer to head node
  * @str: This is string to store
  * @num: This is the node index used by history
- *
  * Return: The list size
  */
 
@@ -43,7 +42,6 @@ list_t *add_node(list_t **head, const char *str, int num)
  * @head: This parameter is address of pointer to head node
  * @str: This is the string to store
  * @num: This is the node index used by history
- *
  * Return: The list size
  */
 
@@ -58,7 +56,7 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 
 	node = *head;
 	new_n = malloc(sizeof(list_t));
-	if (new_node == NULL)
+	if (new_n == NULL)
 	{
 		return (NULL);
 	}
@@ -90,8 +88,7 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 
 /**
  * print_list_str - This function prints only str element of list_t list
- * @h: pointer to head og linked list
- *
+ * @h: This parameter is the pointer to head og linked list
  * Return: List size
  */
 
@@ -113,20 +110,20 @@ size_t print_list_str(const list_t *h)
  * delete_node_at_index - This function deletes node at a given index
  * @head: This parameter is address of pointer to first node
  * @index: This parameter is node index to delete
- *
  * Return: 1 on success, 0 on fail
  */
+
 int delete_node_at_index(list_t **head, unsigned int index)
 {
 	list_t *node, *prev_n;
 	unsigned int x = 0;
 
-	if (!head || !*head)
+	if (head == NULL || *head == NULL)
 	{
 		return (0);
 	}
 
-	if (index == NULL)
+	if (!index)
 	{
 		node = *head;
 		*head = (*head)->next;
@@ -154,7 +151,6 @@ int delete_node_at_index(list_t **head, unsigned int index)
 /**
  * free_list - This function frees all list nodes
  * @head_ptr: This parameter is address of pointer to head node
- *
  * Return: void
  */
 
@@ -162,7 +158,7 @@ void free_list(list_t **head_ptr)
 {
 	list_t *node, *next_n, *head;
 
-	if (!head_ptr || !*head_ptr)
+	if (head_ptr == NULL || *head_ptr == NULL)
 	{
 		return;
 	}

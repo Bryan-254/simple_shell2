@@ -50,14 +50,14 @@ char *dup_chars(char *pathstr, int start, int stop)
 }
 
 /**
- * find_path - This function finds this cmd in the PATH string
+ * find_the_path - This function finds this cmd in the PATH string
  * @info: This parameter is the info struct
- * @pathstr:This parameter is the PATH string
+ * @pathstr: This parameter is the PATH string
  * @cmd: This parameter is the cmd to find
  * Return: returns the full path of cmd if found or NULL
  */
 
-char *find_path(info_t *info, char *pathstr, char *cmd)
+char *find_the_path(info_t *info, char *pathstr, char *cmd)
 {
 	int x = 0, current_pos = 0;
 	char *path_point;
@@ -73,10 +73,10 @@ char *find_path(info_t *info, char *pathstr, char *cmd)
 	}
 	while (1)
 	{
-		if (pathstr[x] == NULL || pathstr[x] == ':')
+		if (!pathstr[x] || pathstr[x] == ':')
 		{
 			path_point = dup_chars(pathstr, current_pos, x);
-			if (*path_point == NULL)
+			if (!*path_point)
 			{
 				_strcat(path_point, cmd);
 			}
@@ -89,7 +89,7 @@ char *find_path(info_t *info, char *pathstr, char *cmd)
 			{
 				return (path_point);
 			}
-			if (pathstr[x] == NULL)
+			if (!pathstr[x])
 			{
 				break;
 			}

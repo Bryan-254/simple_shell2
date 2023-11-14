@@ -64,13 +64,13 @@ char **list_to_strings(list_t *head)
 }
 
 /**
- * print_list - This function prints all elements of a list_t list
+ * print_the_list - This function prints all elements of a list_t list
  * @h: This parameter is pointer to first node
  *
  * Return: List size
  */
 
-size_t print_list(const list_t *h)
+size_t print_the_list(const list_t *h)
 {
 	size_t x = 0;
 

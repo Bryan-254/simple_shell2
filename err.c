@@ -32,16 +32,16 @@ void _eputs(char *str)
 int _eputchar(char c)
 {
 	static int x;
-	static char buf[WRITE_BUFF_SIZE];
+	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUFF_FLUSH || x >= WRITE_BUFF_SIZE)
+	if (c == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		write(2, buff, x);
+		write(2, buf, x);
 		x = 0;
 	}
-	if (c != BUFF_FLUSH)
+	if (c != BUF_FLUSH)
 	{
-		buff[x++] = c;
+		buf[x++] = c;
 	}
 	return (1);
 }
@@ -57,16 +57,16 @@ int _eputchar(char c)
 int _putfd(char c, int fd)
 {
 	static int x;
-	static char buff[WRITE_BUFF_SIZE];
+	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUFF_FLUSH || x >= WRITE_BUFF_SIZE)
+	if (c == BUF_FLUSH || x >= WRITE_BUF_SIZE)
 	{
-		write(fd, buff, x);
+		write(fd, buf, x);
 		x = 0;
 	}
-	if (c != BUFF_FLUSH)
+	if (c != BUF_FLUSH)
 	{
-		buff[x++] = c;
+		buf[x++] = c;
 	}
 	return (1);
 }

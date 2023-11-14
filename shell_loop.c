@@ -14,8 +14,8 @@ int hsh(info_t *info, char **av)
 
 	while (builtin_retval != -2 && ret_val != -1)
 	{
-		clear_the_info(info);
-		if (is_interactive(info))
+		clear_info(info);
+		if (interactive(info))
 		{
 			_puts("$ ");
 		}
@@ -23,20 +23,20 @@ int hsh(info_t *info, char **av)
 		ret_val = get_input(info);
 		if (ret_val != -1)
 		{
-			set_the_info(info, av);
+			set_info(info, av);
 			builtin_retval = find_builtin(info);
 			if (builtin_retval == -1)
 			{
-				find_the_cmd(info);
+				find_cmd(info);
 			}
 		}
-		else if (is_interactive(info))
+		else if (interactive(info))
 			_putchar('\n');
-		free_the_info(info, 0);
+		free_info(info, 0);
 	}
-	write_the_history(info);
-	free_the_info(info, 1);
-	if (is_interactive(info) == NULL && info->status)
+	write_history(info);
+	free_info(info, 1);
+	if (interactive(info) == NULL && info->status)
 	{
 		exit(info->status);
 	}
@@ -89,17 +89,17 @@ int find_builtin(info_t *info)
 }
 
 /**
- * find_the_cmd - This function finds a command in the PATH
+ * find_cmd - This function finds a command in the PATH
  * @info: This parameter is the parameter & return info struct
  * Return: void
  */
 
-void find_the_cmd(info_t *info)
+void find_cmd(info_t *info)
 {
-	char *path_point = NULL;
+	char *path = NULL;
 	int x, y;
 
-	info->path_point = info->argv[0];
+	info->path = info->argv[0];
 	if (info->linecount_flag == 1)
 	{
 		info->line_count++;
@@ -112,21 +112,21 @@ void find_the_cmd(info_t *info)
 			y++;
 		}
 	}
-	if (y == NULL)
+	if (!y)
 	{
 		return;
 	}
 
-	path_point = find_path(info, _getenv(info, "PATH="), info->argv[0]);
+	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
 
-	if (path_point)
+	if (path)
 	{
-		info->path_point = path_point;
+		info->path = path;
 		fork_cmd(info);
 	}
 	else
 	{
-		if ((is_interactive(info) || _getenv(info, "PATH=")
+		if ((interactive(info) || _getenv(info, "PATH=")
 			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
