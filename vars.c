@@ -44,6 +44,7 @@ int is_chain(info_t *info, char *buf, size_t *p)
  * @len: This parameter is the length of buf
  * Return: void
  */
+
 void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 {
 	size_t y = *p;
@@ -123,24 +124,24 @@ int replace_vars(info_t *info)
 
 		if (!_strcmp(info->argv[x], "$?"))
 		{
-			replace_the_string(&(info->argv[x]),
-				_strdup(convert_the_number(info->status, 10, 0)));
+			replace_string(&(info->argv[x]),
+				_strdup(convert_number(info->status, 10, 0)));
 			continue;
 		}
 		if (!_strcmp(info->argv[x], "$$"))
 		{
-			replace_the_string(&(info->argv[x]),
-				_strdup(convert_the_number(getpid(), 10, 0)));
+			replace_string(&(info->argv[x]),
+				_strdup(convert_number(getpid(), 10, 0)));
 			continue;
 		}
 		node = node_starts_with(info->env, &info->argv[x][1], '=');
 		if (node)
 		{
-			replace_the_string(&(info->argv[x]),
+			replace_string(&(info->argv[x]),
 				_strdup(_strchr(node->str, '=') + 1));
 			continue;
 		}
-		replace_the_string(&info->argv[x], _strdup(""));
+		replace_string(&info->argv[x], _strdup(""));
 
 	}
 	return (0);
@@ -153,7 +154,7 @@ int replace_vars(info_t *info)
  * Return: 1 if replaced, else 0
  */
 
-int replace_the_string(char **old, char *new)
+int replace_string(char **old, char *new)
 {
 	free(*old);
 	*old = new;

@@ -36,7 +36,7 @@ int hsh(info_t *info, char **av)
 	}
 	write_history(info);
 	free_info(info, 1);
-	if (interactive(info) == NULL && info->status)
+	if (!interactive(info) && info->status)
 	{
 		exit(info->status);
 	}
@@ -65,13 +65,13 @@ int find_builtin(info_t *info)
 {
 	int x, built_in_retval = -1;
 	builtin_table builtintble[] = {
-		{"exit", _myexitshell},
+		{"exit", _myexit},
 		{"env", _myenv},
 		{"help", _myhelp},
 		{"history", _myhistory},
 		{"setenv", _mysetenv},
 		{"unsetenv", _myunsetenv},
-		{"cd", _mycdshell},
+		{"cd", _mycd},
 		{"alias", _myalias},
 		{NULL, NULL}
 	};
@@ -107,7 +107,7 @@ void find_cmd(info_t *info)
 	}
 	for (x = 0, y = 0; info->arg[x]; x++)
 	{
-		if (is_delim(info->arg[x], " \t\n") == NULL)
+		if (!is_delim(info->arg[x], " \t\n"))
 		{
 			y++;
 		}
@@ -151,7 +151,6 @@ void fork_cmd(info_t *info)
 
 	if (child_pid == -1)
 	{
-		/* TODO: PUT THE ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}
@@ -159,14 +158,13 @@ void fork_cmd(info_t *info)
 	{
 		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{
-			free_the_info(info, 1);
+			free_info(info, 1);
 			if (errno == EACCES)
 			{
 				exit(126);
 			}
 			exit(1);
 		}
-		/* TODO: PUT THE ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}

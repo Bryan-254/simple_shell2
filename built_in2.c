@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _myhistorylist - This function displays history list, one command by line
+ * _myhistory - This function displays history list, one command by line
  * @info: This is a structure containing potential arguments.
  *  Return: 0
  */
 
-int _myhistorylist(info_t *info)
+int _myhistory(info_t *info)
 {
 	print_the_list(info->history);
 	return (0);

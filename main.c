@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 		info->readfd = fd;
 	}
 	populate_env_list(info);
-	read_the_history(info);
+	read_history(info);
 	hsh(info, argv);
 	return (EXIT_SUCCESS);
 }

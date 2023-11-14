@@ -65,12 +65,13 @@ int write_history(info_t *info)
 }
 
 /**
- * read_the_history - This function reads history from file
+ * read_history - This function reads history from file
  * @info: This is the parameter struct
  *
  * Return: The histcount on success, else 0
  */
-int read_the_history(info_t *info)
+
+int read_history(info_t *info)
 {
 	int x, last = 0, linecount = 0;
 	ssize_t fd, rdlen, fsize = 0;

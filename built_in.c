@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _myexitshell - This function exits the shell
+ * _myexit - This function exits the shell
  * @info: This ia a structure containing potential arguments.
  * Return: exits with a given exit status
  */
 
-int _myexitshell(info_t *info)
+int _myexit(info_t *info)
 {
 	int exit_check_var;
 
@@ -29,12 +29,12 @@ int _myexitshell(info_t *info)
 }
 
 /**
- * _mycdshell - This function changes process' current directory
+ * _mycd - This function changes process' current directory
  * @info: This is a structure containing potential arguments.
  *  Return: 0
  */
 
-int _mycdshell(info_t *info)
+int _mycd(info_t *info)
 {
 	char *s, *dir, buffer[1024];
 	int chdir_returnvalue;
